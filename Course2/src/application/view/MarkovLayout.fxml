@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.MarkovController">
+  <!-- TODO Add Nodes -->
+  <bottom>
+    <AnchorPane prefHeight="90.0" prefWidth="400.0">
+      <children>
+        <Label layoutX="101.0" layoutY="21.0" text="Number of words :" />
+        <TextField fx:id="numWordsField" layoutX="213.0" layoutY="18.0" prefWidth="57.0" />
+        <Button layoutX="151.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGenerate" text="Generate Text!" />
+      </children>
+    </AnchorPane>
+  </bottom>
+  <center>
+    <TextArea fx:id="resultBox" prefHeight="499.9999000000025" prefWidth="379.0" wrapText="true" />
+  </center>
+  <left>
+    <VBox prefHeight="450.0" prefWidth="30.0" />
+  </left>
+  <right>
+    <VBox prefHeight="450.0" prefWidth="30.0" />
+  </right>
+  <top>
+    <AnchorPane prefHeight="90.0" prefWidth="400.0">
+      <children>
+        <Label layoutX="91.0" layoutY="18.0" text="Markov Text">
+          <font>
+            <Font size="40.0" />
+          </font>
+        </Label>
+      </children>
+    </AnchorPane>
+  </top>
+</BorderPane>

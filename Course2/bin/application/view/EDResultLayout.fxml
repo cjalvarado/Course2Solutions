@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<VBox alignment="CENTER" fillWidth="true" prefHeight="200.0" prefWidth="300.0" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.EDResultController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label text="Word Path:" />
+    <Label fx:id="pathLabel" text="Label" textAlignment="CENTER" />
+    <HBox alignment="CENTER" spacing="10.0">
+      <children>
+        <Label text="Number of steps:" />
+        <Label fx:id="numStepsLabel" text="Label" />
+      </children>
+    </HBox>
+    <Button fx:id="okButton" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+  </children>
+</VBox>

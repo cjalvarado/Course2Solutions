@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet ../application.css?>
+
+<AnchorPane fx:id="leftPane" minWidth="-1.0" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.TextProController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <VBox alignment="CENTER" layoutX="649.0" layoutY="0.0" prefHeight="600.0" prefWidth="250.0" spacing="55.0" styleClass="right-split">
+      <children>
+        <Button mnemonicParsing="false" onAction="#handleLoadText" prefHeight="21.0" prefWidth="160.0" text="Load Text">
+          <font>
+            <Font size="14.0" fx:id="x1" />
+          </font>
+        </Button>
+        <Button font="$x1" mnemonicParsing="false" onAction="#handleFleschIndex" prefWidth="160.0" text="Flesch Index" />
+        <Button font="$x1" mnemonicParsing="false" onAction="#handleEditDistance" prefHeight="21.0" prefWidth="160.0" text="Edit Distance" />
+        <Button mnemonicParsing="false" onAction="#handleMarkovText" prefHeight="25.0" prefWidth="160.0" text="Generate Markov Text">
+          <font>
+            <Font size="13.5" />
+          </font>
+        </Button>
+        <CheckBox fx:id="spellingBox" font="$x1" mnemonicParsing="false" onAction="#handleSpelling" text="Spelling Suggestions" />
+        <CheckBox fx:id="autocompleteBox" font="$x1" mnemonicParsing="false" onAction="#handleAutoComplete" text="AutoComplete" />
+      </children>
+    </VBox>
+    <AnchorPane layoutX="0.0" layoutY="0.0" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="650.0" styleClass="left-split">
+      <children>
+        <TextField fx:id="fleschField" layoutX="124.0" layoutY="522.0" prefWidth="72.0" />
+        <Label layoutX="47.0" layoutY="525.0" text="Flesch Index" />
+        <Button layoutX="503.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
+        <Line endX="52.0" endY="575.0" layoutX="592.0" layoutY="62.0" startX="52.0" startY="-63.0" stroke="GREY" strokeLineCap="BUTT" strokeWidth="4.6" />
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>

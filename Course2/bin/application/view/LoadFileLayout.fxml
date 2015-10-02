@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.LoadFileDialogController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Button layoutX="206.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleBrowse" text="Browse" />
+    <Button layoutX="72.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleAppend" text="Append" />
+    <Button layoutX="174.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleReplace" text="Replace" />
+    <TextField fx:id="pathField" layoutX="35.0" layoutY="70.0" prefHeight="30.0" prefWidth="162.0" />
+    <Label layoutX="103.0" layoutY="26.0" text="Choose text file..." />
+  </children>
+</AnchorPane>

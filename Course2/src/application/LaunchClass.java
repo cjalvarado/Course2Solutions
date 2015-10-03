@@ -18,7 +18,7 @@ public class LaunchClass {
 	}
 	
 	public textgen.MarkovTextGenerator getMTG() {
-		return new textgen.MarkovTextGeneratorLoL(new Random());
+		return new textgen.MarkovTextGeneratorLoL(new Random(42));
 	}
 	
 	public spelling.WordPath getWordPath() {
@@ -27,15 +27,12 @@ public class LaunchClass {
 	}
 	
     public spelling.AutoComplete getAutoComplete() {
-        spelling.AutoCompleteDictionaryTrie tr = new spelling.AutoCompleteDictionaryTrie();
-        spelling.DictionaryLoader.loadDictionary(tr, dictFile);
-        return tr;
+    	return new spelling.AutoCompleteDictionaryTrie();
     }
     
     public spelling.Dictionary getDictionary() {
-        spelling.Dictionary d = new spelling.DictionaryHashSet(dictFile);
-        spelling.DictionaryLoader.loadDictionary(d, dictFile);
-    	return d;
+    	return new spelling.DictionaryHashSet(dictFile);
+ 
     }
     
     public spelling.SpellingSuggest getSpellingSuggest(spelling.Dictionary dic) {

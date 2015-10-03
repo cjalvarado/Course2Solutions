@@ -38,7 +38,7 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 		
 		this.primaryStage.setTitle("TextProApp");
-		primaryStage.setResizable(false);
+		//primaryStage.setResizable(false);
 		
 		try {
 			// Load root layout from fxml
@@ -102,7 +102,7 @@ public class MainApp extends Application {
     	try {
     		// Load the fxml file and create a new stage for the popup
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/LoadFileLayout.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
+			VBox page = (VBox) loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Load File");
 			dialogStage.initModality(Modality.WINDOW_MODAL);

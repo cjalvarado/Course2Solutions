@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -27,6 +28,9 @@ public class TextProController {
 	@FXML 
 	private CheckBox spellingBox;
 	
+	@FXML
+	private VBox rightBox;
+	
 	
 	
 	 /**
@@ -43,8 +47,9 @@ public class TextProController {
 		textBox.setPrefSize(570, 492);
 		textBox.setWrapText(true);
 		textBox.setLayoutX(40);
-		textBox.setLayoutY(24);	
+		textBox.setLayoutY(25);	
 		leftPane.getChildren().add(textBox);
+		
 		
 	}
 	
@@ -77,7 +82,6 @@ public class TextProController {
 			
 			fIndex = doc.getFleschScore();
 			
-			//PromptText?
 			//get string with two decimal places for index to
 			String fString = String.format("%.2f", fIndex);
 			

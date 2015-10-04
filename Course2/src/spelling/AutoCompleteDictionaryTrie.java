@@ -79,51 +79,13 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 		}
 	}
 	
-	/** 
-	 * Returns up to the n "best" predictions, including the word itself,
-	 * in terms of length
-	 * If this string is not in the trie, it returns null.
-	 * @param text The text to use at the word stem
-	 * @param n The maximum number of predictions desired.
-	 * @return A list containing the up to n best predictions
-	 */
-	public List<String> predict(String text, int n)
-	{
-		// First find the node of the last letter
-		TrieNode curr = root;
-		TrieNode next = null;
-		List<String> toReturn = new LinkedList<String>();
-		for (Character c : text.toCharArray())
-		{
-			next = curr.getChild(c);
-			if (next == null)
-			{
-				return toReturn;
-			}
-			curr = next;
-		}
-		// Now build the list of predictions
-		LinkedList<TrieNode> queue = new LinkedList<TrieNode>();
-		queue.add(curr);
-		while (!queue.isEmpty() && n > 0)
-		{
-			next = queue.removeFirst();
-			if (next.endsWord()) {
-				toReturn.add(next.getText());
-				n--;
-			}
-			for (Character cnext : next.getValidNextCharacters()) 
-			{
-				queue.add(next.getChild(cnext));
-			}
-		}
-		return toReturn;
-	}
+
 	
 	@Override
 	public boolean isWord(String s) {
 		TrieNode curr = root;
-		for(char c : s.toCharArray()) {
+		for(char cWithCase : s.toCharArray()) {
+			Character c = Character.toLowerCase(cWithCase);
 			// advance to next char
 			curr = curr.getChild(c);
 			// if next doesn't exist, return false
@@ -140,8 +102,10 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 		TrieNode curr = root;
 		TrieNode next = null;
 		List<String> toReturn = new LinkedList<String>();
-		for (Character c : prefix.toCharArray())
+		Character c = null;
+		for (Character cWithCase : prefix.toCharArray())
 		{
+			c = Character.toLowerCase(cWithCase);
 			next = curr.getChild(c);
 			if (next == null)
 			{

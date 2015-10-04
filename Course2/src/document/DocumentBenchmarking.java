@@ -43,7 +43,7 @@ public class DocumentBenchmarking {
 				b.getFleschScore();
 			}
 			endTime = System.nanoTime();
-			seconds = ((double )endTime - startTime) / 1000000000;
+			seconds = (((double )endTime - startTime) / 1000000000) / TRIALS;
 			System.out.print(numToCheck + "\t" + seconds);
 		
 			startTime2 = System.nanoTime();
@@ -53,7 +53,7 @@ public class DocumentBenchmarking {
 				b.getFleschScore();
 			}
 			endTime2 = System.nanoTime();
-			seconds2 = ((double )endTime2 - startTime2) / 1000000000;
+			seconds2 = (((double )endTime2 - startTime2) / 1000000000) / TRIALS;
 			System.out.println("\t" + seconds2);
 		}
 	}

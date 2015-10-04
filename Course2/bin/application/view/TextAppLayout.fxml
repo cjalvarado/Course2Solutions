@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,10 +9,10 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-stylesheet ../application.css?>
 
-<AnchorPane fx:id="leftPane" minWidth="-1.0" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.TextProController">
+<AnchorPane fx:id="leftPane" minWidth="-1.0" prefHeight="582.0" prefWidth="855.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.TextProController">
   <!-- TODO Add Nodes -->
   <children>
-    <VBox alignment="CENTER" layoutX="649.0" layoutY="0.0" prefHeight="600.0" prefWidth="250.0" spacing="55.0" styleClass="right-split">
+    <VBox alignment="CENTER_LEFT" layoutX="649.0" layoutY="0.0" prefHeight="582.0" prefWidth="205.0" spacing="55.0" styleClass="right-split">
       <children>
         <Button mnemonicParsing="false" onAction="#handleLoadText" prefHeight="21.0" prefWidth="160.0" text="Load Text">
           <font>
@@ -28,13 +29,27 @@
         <CheckBox fx:id="spellingBox" font="$x1" mnemonicParsing="false" onAction="#handleSpelling" text="Spelling Suggestions" />
         <CheckBox fx:id="autocompleteBox" font="$x1" mnemonicParsing="false" onAction="#handleAutoComplete" text="AutoComplete" />
       </children>
+      <padding>
+        <Insets bottom="20.0" left="5.0" />
+      </padding>
     </VBox>
-    <AnchorPane layoutX="0.0" layoutY="0.0" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="650.0" styleClass="left-split">
+    <AnchorPane layoutX="0.0" layoutY="0.0" minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="650.0" styleClass="left-split">
       <children>
-        <TextField fx:id="fleschField" layoutX="124.0" layoutY="522.0" prefWidth="72.0" />
-        <Label layoutX="47.0" layoutY="525.0" text="Flesch Index" />
-        <Button layoutX="503.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
-        <Line endX="52.0" endY="575.0" layoutX="592.0" layoutY="62.0" startX="52.0" startY="-63.0" stroke="GREY" strokeLineCap="BUTT" strokeWidth="4.6" />
+        <HBox alignment="CENTER_LEFT" layoutX="0.0" layoutY="525.0" prefHeight="32.0" prefWidth="642.0" spacing="15.0">
+          <children>
+            <TextField fx:id="fleschField" prefWidth="72.0" />
+            <Label text="Flesch Index">
+              <font>
+                <Font name="System Bold" size="14.0" />
+              </font>
+            </Label>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="322.0" />
+            <Button font="$x1" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
+          </children>
+          <padding>
+            <Insets left="39.0" />
+          </padding>
+        </HBox>
       </children>
     </AnchorPane>
   </children>

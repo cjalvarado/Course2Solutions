@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class EDResultController {
@@ -12,6 +13,8 @@ public class EDResultController {
 	private Stage dialogStage;
 	//private MainApp mainApp;
 	
+	@FXML
+	private VBox container;
 	
 	@FXML
 	private Label pathLabel;
@@ -26,6 +29,7 @@ public class EDResultController {
 	@FXML
 	private void initialize() {
 		okButton.setDefaultButton(true);
+		
 	}
 	
 	/**
@@ -44,9 +48,10 @@ public class EDResultController {
     public void setResult(List<String> result) {
     	if(result != null) {
 	    	numStepsLabel.setText(Integer.toString(result.size()-1));
-	    	
 	    	String str = buildResultString(result);
 	    	pathLabel.setText(str);
+	    	
+	    	//if(pathLabel)
     	}
     	// no path found
     	else {

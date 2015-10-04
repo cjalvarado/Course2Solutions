@@ -46,7 +46,14 @@ public class MainApp extends Application {
 			rootLayout = (BorderPane) loader.load();
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+            primaryStage.setMinHeight(430);
+            primaryStage.setMinWidth(530);
             primaryStage.show();
+            
+            
+            rootLayout.widthProperty().addListener( e -> {
+            	System.out.println(rootLayout.getWidth());
+            });
             
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -65,7 +72,7 @@ public class MainApp extends Application {
             // Load the fxml file and set into the center of the main layout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("view/TextAppLayout.fxml"));
             
-            AnchorPane textProPage = (AnchorPane) loader.load();
+            HBox textProPage = (HBox) loader.load();
             rootLayout.setCenter(textProPage);
             
             // Connect controller and main app

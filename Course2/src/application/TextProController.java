@@ -1,10 +1,13 @@
 package application;
 
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -17,7 +20,10 @@ public class TextProController {
 	private AutoSpellingTextArea textBox;
 	
 	@FXML
-	private AnchorPane leftPane;
+	private VBox leftPane;
+	
+	@FXML
+	private VBox rightBox;
 	
 	@FXML
 	private TextField fleschField;
@@ -28,27 +34,50 @@ public class TextProController {
 	@FXML 
 	private CheckBox spellingBox;
 	
-	@FXML
-	private VBox rightBox;
+	//private Node 
+	
+	
 	
 	
 	
 	 /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
+     * 
+     * Initialize and add text area to application
      */
 	@FXML
 	private void initialize() {
 		// make field displaying flesch score read-only
 		fleschField.setEditable(false);
 		
+		
+		
 		// instantiate and add custom text area
 		textBox = new AutoSpellingTextArea();
 		textBox.setPrefSize(570, 492);
+		textBox.setMinHeight(2);
+		
+		
 		textBox.setWrapText(true);
-		textBox.setLayoutX(40);
-		textBox.setLayoutY(25);	
-		leftPane.getChildren().add(textBox);
+		
+		// add text area as first child of left VBox
+		ObservableList<Node> nodeList = leftPane.getChildren();
+		Node firstChild = nodeList.get(0);
+		nodeList.set(0, textBox);
+		nodeList.add(firstChild);
+		
+		VBox.setVgrow(textBox, Priority.ALWAYS);
+		
+		rightBox.heightProperty().addListener(li -> {
+			System.out.println("box height : " + rightBox.getHeight());
+			if(rightBox.getHeight() < 470) {
+				rightBox.setSpacing((rightBox.getHeight() - 132)/8.5);
+			}
+			else {
+				rightBox.setSpacing(55);
+			}
+		});
 		
 		
 	}
@@ -67,6 +96,7 @@ public class TextProController {
 		this.mainApp = mainApp;
 		textBox.setMainApp(mainApp);
 		textBox.setReferences();
+		
 	}
 	
 	@FXML

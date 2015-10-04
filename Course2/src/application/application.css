@@ -1,7 +1,13 @@
 
 
-.background{ -fx-background-color:rgb(143,226,233)}
+.background{ 
+	-fx-background-color: #8fe2e9;
+}
 
-.left-split { -fx-background-color:rgb(143,226,233); }
+.left-split { 
+	-fx-background-color: #8fe2e9;
+}
 
-.right-split { -fx-background-color:rgb(143,226,233); }
+.right-split { 
+	-fx-background-color: #8fe2e9;
+}

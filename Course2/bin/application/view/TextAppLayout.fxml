@@ -4,21 +4,44 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?scenebuilder-stylesheet ../application.css?>
 
-<AnchorPane fx:id="leftPane" minWidth="-1.0" prefHeight="582.0" prefWidth="855.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.TextProController">
-  <!-- TODO Add Nodes -->
+<HBox maxHeight="1080.0" maxWidth="1980.0" minHeight="430.0" minWidth="530.0" prefHeight="582.0" prefWidth="855.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.TextProController">
   <children>
-    <VBox alignment="CENTER_LEFT" layoutX="649.0" layoutY="0.0" prefHeight="582.0" prefWidth="205.0" spacing="55.0" styleClass="right-split">
+    <VBox fx:id="leftPane" prefHeight="400.0" prefWidth="402.0" spacing="10.0" HBox.hgrow="ALWAYS">
       <children>
-        <Button mnemonicParsing="false" onAction="#handleLoadText" prefHeight="21.0" prefWidth="160.0" text="Load Text">
-          <font>
-            <Font size="14.0" fx:id="x1" />
-          </font>
-        </Button>
+        <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="642.0" spacing="15.0" VBox.vgrow="NEVER">
+          <children>
+            <TextField fx:id="fleschField" minWidth="72.0" prefWidth="72.0" HBox.hgrow="NEVER" />
+            <Label minWidth="81.0" text="Flesch Index" HBox.hgrow="NEVER">
+              <font>
+                <Font name="System Bold" size="14.0" />
+              </font>
+            </Label>
+            <Pane maxWidth="+Infinity" minWidth="20.0" prefHeight="32.0" prefWidth="300.0" HBox.hgrow="ALWAYS" />
+            <Button minWidth="56.0" mnemonicParsing="false" onAction="#handleClear" text="Clear">
+              <font>
+                <Font size="14.0" fx:id="x1" />
+              </font>
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </Button>
+          </children>
+          <padding>
+            <Insets />
+          </padding>
+        </HBox>
+      </children>
+      <padding>
+        <Insets bottom="25.0" left="40.0" right="40.0" top="25.0" />
+      </padding>
+    </VBox>
+    <VBox fx:id="rightBox" maxWidth="-1.0" prefHeight="582.0" prefWidth="205.0" spacing="55.0" HBox.hgrow="SOMETIMES">
+      <children>
+        <Button font="$x1" mnemonicParsing="false" onAction="#handleLoadText" prefHeight="21.0" prefWidth="160.0" text="Load Text" />
         <Button font="$x1" mnemonicParsing="false" onAction="#handleFleschIndex" prefWidth="160.0" text="Flesch Index" />
         <Button font="$x1" mnemonicParsing="false" onAction="#handleEditDistance" prefHeight="21.0" prefWidth="160.0" text="Edit Distance" />
         <Button mnemonicParsing="false" onAction="#handleMarkovText" prefHeight="25.0" prefWidth="160.0" text="Generate Markov Text">
@@ -32,25 +55,9 @@
       <padding>
         <Insets bottom="20.0" left="5.0" />
       </padding>
+      <HBox.margin>
+        <Insets top="50.0" />
+      </HBox.margin>
     </VBox>
-    <AnchorPane layoutX="0.0" layoutY="0.0" minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="650.0" styleClass="left-split">
-      <children>
-        <HBox alignment="CENTER_LEFT" layoutX="0.0" layoutY="525.0" prefHeight="32.0" prefWidth="642.0" spacing="15.0">
-          <children>
-            <TextField fx:id="fleschField" prefWidth="72.0" />
-            <Label text="Flesch Index">
-              <font>
-                <Font name="System Bold" size="14.0" />
-              </font>
-            </Label>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="322.0" />
-            <Button font="$x1" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
-          </children>
-          <padding>
-            <Insets left="39.0" />
-          </padding>
-        </HBox>
-      </children>
-    </AnchorPane>
   </children>
-</AnchorPane>
+</HBox>

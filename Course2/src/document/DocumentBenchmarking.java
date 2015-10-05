@@ -19,7 +19,7 @@ public class DocumentBenchmarking {
 	public static void main(String [] args) {
 		String s = "data/warAndPeace.txt";
 		
-		int increment = 10000;
+		int increment = 20000;
 		String test = null;
 		int numSteps = 20;
 		int start = 50000;
@@ -43,7 +43,7 @@ public class DocumentBenchmarking {
 				b.getFleschScore();
 			}
 			endTime = System.nanoTime();
-			seconds = (((double )endTime - startTime) / 1000000000) / TRIALS;
+			seconds = (((double )endTime - startTime) / 1000000000);
 			System.out.print(numToCheck + "\t" + seconds);
 		
 			startTime2 = System.nanoTime();
@@ -53,7 +53,7 @@ public class DocumentBenchmarking {
 				b.getFleschScore();
 			}
 			endTime2 = System.nanoTime();
-			seconds2 = (((double )endTime2 - startTime2) / 1000000000) / TRIALS;
+			seconds2 = (((double )endTime2 - startTime2) / 1000000000);
 			System.out.println("\t" + seconds2);
 		}
 	}
@@ -70,6 +70,9 @@ public class DocumentBenchmarking {
 			while ((val = bis.read()) != -1 && count < numChars) {
 				s.append((char)val);
 				count++;
+			}
+			if (count < numChars) {
+				System.out.println("Warning: End of file reached at " + count + " characters.");
 			}
 			bis.close();
 		}

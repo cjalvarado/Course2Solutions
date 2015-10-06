@@ -7,7 +7,7 @@ public class LaunchClass {
 	
 	// AutoComplete?
 	
-	public String dictFile = "dict.txt";
+	public String dictFile = "data/dict.txt";
 	
 	public LaunchClass() {
 		super();

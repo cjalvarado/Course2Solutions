@@ -5,16 +5,19 @@ import java.util.List;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 
@@ -38,7 +41,6 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 		
 		this.primaryStage.setTitle("TextProApp");
-		//primaryStage.setResizable(false);
 		
 		try {
 			// Load root layout from fxml
@@ -46,15 +48,13 @@ public class MainApp extends Application {
 			rootLayout = (BorderPane) loader.load();
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+            
+            // min height and width calculated from components in TextAppLayout
             primaryStage.setMinHeight(430);
-            primaryStage.setMinWidth(530);
+            primaryStage.setMinWidth(334);
             primaryStage.show();
             
-            
-            rootLayout.widthProperty().addListener( e -> {
-            	System.out.println(rootLayout.getWidth());
-            });
-            
+          
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -84,6 +84,10 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+    
+    
+    
+    // SHOW NEW STAGE METHODS
     
     /**
      * Shows dialog for user input error
@@ -137,12 +141,12 @@ public class MainApp extends Application {
     	
     }
     
- // not sure about parameter
+ 
     public void showEditDistanceDialog(String selectedText) {
     	try {
     		// Load the fxml file and create a new stage for the popup
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/EditDistanceLayout.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
+			VBox page = (VBox) loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Calculate Edit Distance");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -172,43 +176,62 @@ public class MainApp extends Application {
     	
     }
     
-    //TODO
     public void showEDResult(List<String> path) {
-    	try {
-    		// Load the fxml file and create a new stage for the popup
-			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/EDResultLayout.fxml"));
-			VBox page = (VBox) loader.load();
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Edit Distance Result");
-			//dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(primaryStage);
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			// Set reference to stage in controller
-			//BUG -- when first displayed results don't show up until resize window
-			//EDResultController controller = new EDResultController();
-			
-			EDResultController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			//controller.setMainApp(this);
-			
-			// give controller reference to result
-			controller.setResult(path);
-			
-			//loader.setController(controller);
-			
-
-			// Show the dialog and wait until the user closes it
-		    dialogStage.showAndWait();
-		    
-		    
-		
-
-    	} catch (IOException e) {
-    		// Exception gets thrown if the fxml file could not be loaded
-    		e.printStackTrace();
+    	Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.setTitle("Result");
+    	alert.setHeaderText("Word Path : ");
+    	alert.initModality(Modality.NONE);
+    	alert.setResizable(true);
+    	
+    	// create layout for content
+    	VBox box = new VBox();
+    	HBox midBox = new HBox();
+    	box.setPadding(new Insets(35,0,0,0));
+    	box.setSpacing(35);
+    	midBox.setSpacing(15);
+    	
+    	Label pathLabel = new Label();
+    	Label numStepsLabel = new Label("Number of steps : ");
+    	Label numSteps = new Label();
+    	Font font = new Font(14);
+    	pathLabel.setFont(font);
+    	numStepsLabel.setFont(font);    	
+    	numSteps.setFont(Font.font(font.getFamily(), FontWeight.BOLD, 14));
+    	
+    	midBox.getChildren().add(numStepsLabel);
+    	midBox.getChildren().add(numSteps);
+    	midBox.setAlignment(Pos.CENTER);
+    	
+    	box.getChildren().add(pathLabel);
+    	box.getChildren().add(midBox);
+    	box.setAlignment(Pos.CENTER);
+    	alert.getDialogPane().setPrefWidth(300);
+    	
+    	// check for path
+    	if(path != null) {
+    		numSteps.setText(Integer.toString(path.size()-1));
+	    	pathLabel.setText(String.join(" -> ", path));
+	    	
+	    	Text text = new Text(pathLabel.getText());
+	    	text.setFont(font);
+	    	if(text.getLayoutBounds().getWidth() > 200) {
+	    		
+		    	alert.getDialogPane().setPrefWidth(text.getLayoutBounds().getWidth()+100);
+	    	}
+	    	
     	}
+    	// no path found
+    	else {
+    		pathLabel.setText("No Path Found.");
+    		numSteps.setText("N/A");
+    	}
+    	
+    	// set content and styling
+    	alert.getDialogPane().setContent(box);
+    	alert.getDialogPane().getStylesheets().add(
+    			   getClass().getResource("application.css").toExternalForm());
+    	alert.getDialogPane().getStyleClass().add("myDialog");
+    	alert.showAndWait();
     }
     
     
@@ -251,6 +274,7 @@ public class MainApp extends Application {
         VBox loadVBox = new VBox(20);
         loadVBox.setAlignment(Pos.CENTER);
         Text tNode = new Text(text);
+        tNode.setFont(new Font(16));
         loadVBox.getChildren().add(new HBox());
         loadVBox.getChildren().add(tNode);
         loadVBox.getChildren().add(new HBox());
@@ -260,7 +284,8 @@ public class MainApp extends Application {
     }
     
     
-    // getters for new objects needed
+    // GETTERS FOR NEW OBJECTS
+    
     public document.Document getDocument(String text) {
     	return launch.getDocument(text);
     }
@@ -292,6 +317,8 @@ public class MainApp extends Application {
     public spelling.SpellingSuggest getSpellingSuggest(spelling.Dictionary dic) {
     	return launch.getSpellingSuggest(dic);
     }
+    
+    // MAIN
 	public static void main(String[] args) {
 		launch(args);
 	}

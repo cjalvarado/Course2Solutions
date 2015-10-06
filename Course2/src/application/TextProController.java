@@ -1,12 +1,16 @@
 package application;
 
+import java.util.function.Consumer;
+
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -14,6 +18,15 @@ import javafx.stage.Stage;
 
 public class TextProController {
 
+	
+	private final static double DEFAULT_SPACING = 55;
+	private final static double CONTROL_HEIGHT = 132;
+	private final static double SPACE_DIV = 8.5;
+	private final static double BUTTON_WIDTH = 160.0;
+	private final static double RBOX_THRESHOLD = 520;	 // threshold to change spacing of right VBox
+	
+	
+	
 	private MainApp mainApp;
 	
 	// UI Controls
@@ -24,6 +37,15 @@ public class TextProController {
 	
 	@FXML
 	private VBox rightBox;
+	
+	@FXML
+	private HBox container;
+	
+	@FXML
+	private Label fLabel;
+	
+	@FXML
+	private Pane bufferPane;
 	
 	@FXML
 	private TextField fleschField;
@@ -56,10 +78,11 @@ public class TextProController {
 		// instantiate and add custom text area
 		textBox = new AutoSpellingTextArea();
 		textBox.setPrefSize(570, 492);
-		textBox.setMinHeight(2);
+		textBox.setStyle("-fx-font-size: 14px");
 		
 		
 		textBox.setWrapText(true);
+		
 		
 		// add text area as first child of left VBox
 		ObservableList<Node> nodeList = leftPane.getChildren();
@@ -69,17 +92,43 @@ public class TextProController {
 		
 		VBox.setVgrow(textBox, Priority.ALWAYS);
 		
-		rightBox.heightProperty().addListener(li -> {
-			System.out.println("box height : " + rightBox.getHeight());
-			if(rightBox.getHeight() < 470) {
-				rightBox.setSpacing((rightBox.getHeight() - 132)/8.5);
+		
+		
+		// ADD LISTENERS FOR ADJUSTING ON RESIZE
+		
+		container.widthProperty().addListener(li -> {
+			
+			if((container.getWidth() - leftPane.getPrefWidth()) < BUTTON_WIDTH) {
+				rightBox.setVisible(false);
 			}
 			else {
-				rightBox.setSpacing(55);
+				rightBox.setVisible(true);
 			}
 		});
 		
+		// function for setting spacing of rightBox
+		Consumer<VBox> adjustSpacing = box ->  {
+			if(container.getHeight() < RBOX_THRESHOLD) {
+				rightBox.setSpacing((container.getHeight() - CONTROL_HEIGHT)/SPACE_DIV);
+			}
+			else {
+				rightBox.setSpacing(DEFAULT_SPACING);
+			}
+		};
 		
+		container.heightProperty().addListener(li -> {
+			adjustSpacing.accept(rightBox);
+		});
+		
+		rightBox.visibleProperty().addListener( li -> {
+			if(rightBox.isVisible()) {
+				 container.getChildren().add(rightBox);
+				 adjustSpacing.accept(rightBox);
+			 }
+			 else {
+				 container.getChildren().remove(rightBox);
+			 }	 
+		});
 	}
 	
 	

@@ -27,7 +27,6 @@ import org.fxmisc.richtext.StyledTextArea;
 
 
 
-//public class AutoSpellingTextArea extends StyleClassedTextArea {
 public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 	
 
@@ -118,7 +117,6 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 					// check if index corresponds to misspelled word
 					if(!getStyleOfChar(index)) {
 						String possibleWord = getWordAtIndex(index);
-						System.out.println(possibleWord);
 						showSuggestions(possibleWord, e);
 					}
 				}	
@@ -134,11 +132,6 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 		// keep track of text changes, update spell check if needed
 		this.plainTextChanges().subscribe(change -> {
 			// could make more efficient
-			//System.out.println("Position : " + change.getPosition());
-			//System.out.println("Inserted : " + change.getInserted());
-			//System.out.println("Removed : " + change.getRemoved());
-			//System.out.println("plainText");
-			
 			if(spellingOn && needUpdate) {
 				this.setStyleSpans(0, checkSpelling());
 			}
@@ -157,12 +150,13 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 		// observe caretPosition property for auto complete functionality
 		this.caretPositionProperty().addListener((obs, oldPosition, newPosition) -> {
 			if(autoCompleteOn) {	
+				// listen to textProperty to only
 				String prefix = getWordAtIndex(newPosition.intValue());
-				showCompletions(prefix);
-			}
+				showCompletions(prefix);				
+		     }
+			
         });
-		
-}
+	}
 	
 	
 	/**
@@ -194,7 +188,7 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 		String suffix = this.getText().substring(pos, index);
 		endIndex = index;
 		
-	// replace regex wildcards (literal ".") with "\.". Looks weird but correct...
+		// replace regex wildcards (literal ".") with "\.". Looks weird but correct...
         prefix = prefix.replaceAll("\\.", "\\.");
         suffix = suffix.replaceAll("\\.", "\\.");
         
@@ -321,7 +315,6 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 	    // add "misspelled" word to dictionary
 	    sLabel = new Label("Add to dictionary.");
 	    item = new CustomMenuItem(sLabel, true);
-	    
 	    //register event to add word
 	    item.setOnAction(new EventHandler<ActionEvent>() {
     		@Override
@@ -402,7 +395,7 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 	public void setReferences() {
 		ac = mainApp.getAutoComplete();
 		dic = (spelling.Dictionary)ac;
-		spelling.DictionaryLoader.loadDictionary(dic, "data/dict.txt");
+		spelling.DictionaryLoader.loadDictionary(dic, "Course2/data/dict.txt");
 		ss = mainApp.getSpellingSuggest(dic);
 	}
 	

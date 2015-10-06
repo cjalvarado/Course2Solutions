@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="600.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.MarkovController">
   <!-- TODO Add Nodes -->
   <bottom>
-    <AnchorPane prefHeight="90.0" prefWidth="400.0">
+    <VBox alignment="BOTTOM_CENTER" fillWidth="true" prefHeight="90.0" prefWidth="400.0" spacing="15.0">
       <children>
-        <Label layoutX="101.0" layoutY="21.0" text="Number of words :" />
-        <TextField fx:id="numWordsField" layoutX="213.0" layoutY="18.0" prefWidth="57.0" />
-        <Button layoutX="151.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGenerate" text="Generate Text!" />
+        <HBox alignment="CENTER" spacing="15.0">
+          <Label text="Number of words :">
+            <font>
+              <Font size="14.0" fx:id="x1" />
+            </font>
+          </Label>
+          <TextField fx:id="numWordsField" prefHeight="32.0" prefWidth="57.0" />
+        </HBox>
+        <Button font="$x1" mnemonicParsing="false" onAction="#handleGenerate" text="Generate Text!" />
       </children>
-    </AnchorPane>
+      <padding>
+        <Insets bottom="25.0" />
+      </padding>
+      <BorderPane.margin>
+        <Insets top="15.0" />
+      </BorderPane.margin>
+    </VBox>
   </bottom>
   <center>
-    <TextArea fx:id="resultBox" prefHeight="499.9999000000025" prefWidth="379.0" wrapText="true" />
+    <TextArea fx:id="resultBox" prefHeight="420.0" prefWidth="340.0" wrapText="true" />
   </center>
   <left>
     <VBox prefHeight="450.0" prefWidth="30.0" />
@@ -27,14 +39,14 @@
     <VBox prefHeight="450.0" prefWidth="30.0" />
   </right>
   <top>
-    <AnchorPane prefHeight="90.0" prefWidth="400.0">
+    <HBox alignment="CENTER" prefHeight="85.0" prefWidth="400.0">
       <children>
-        <Label layoutX="91.0" layoutY="18.0" text="Markov Text">
+        <Label text="Markov Text" textAlignment="LEFT">
           <font>
             <Font size="40.0" />
           </font>
         </Label>
       </children>
-    </AnchorPane>
+    </HBox>
   </top>
 </BorderPane>

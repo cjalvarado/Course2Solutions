@@ -86,7 +86,8 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	@Override
 	public String generateText(int numWords) {
 		if (wordList.size() == 0) {
-			throw new IndexOutOfBoundsException();
+			System.out.println("Warning: attempt to generate text on untrained generator.  No text generated");
+			return "";
 		}
 		String theText = "";
 		String current = starter;

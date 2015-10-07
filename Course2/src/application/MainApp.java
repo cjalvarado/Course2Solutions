@@ -186,7 +186,7 @@ public class MainApp extends Application {
     	// create layout for content
     	VBox box = new VBox();
     	HBox midBox = new HBox();
-    	box.setPadding(new Insets(35,0,0,0));
+    	box.setPadding(new Insets(35,0,35,0));
     	box.setSpacing(35);
     	midBox.setSpacing(15);
     	

@@ -61,19 +61,19 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
     private spelling.SpellingSuggest ss;
 	
 	  // set up reflection for spelling suggest
-	  private static Method mHit;
+    private static Method mHit;
     private static Method mGetCharacterIndex;
     private static Object styledView;
     
     
     static {
         try {
-              mHit = Class.forName("org.fxmisc.richtext.skin.StyledTextAreaView").getDeclaredMethod("hit", double.class, double.class);
-              mGetCharacterIndex = Class.forName("org.fxmisc.richtext.skin.CharacterHit").getDeclaredMethod("getCharacterIndex");
+            mHit = Class.forName("org.fxmisc.richtext.skin.StyledTextAreaView").getDeclaredMethod("hit", double.class, double.class);
+            mGetCharacterIndex = Class.forName("org.fxmisc.richtext.skin.CharacterHit").getDeclaredMethod("getCharacterIndex");
         
         } 
         catch (ClassNotFoundException | NoSuchMethodException ex) {
-              throw new RuntimeException(ex);
+            throw new RuntimeException(ex);
         }
     
         mHit.setAccessible(true);

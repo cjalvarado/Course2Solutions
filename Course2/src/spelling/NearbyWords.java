@@ -73,7 +73,7 @@ public class NearbyWords implements SpellingSuggest {
 	   }
    }
    
-	//@Override
+	@Override
 	public List<String> suggestions(String word, int numSuggestions) {
 		// this method creates and calls your NearbyWords class for
 		// words nearby

@@ -77,7 +77,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
   }
   
   public E remove(int index) {
-	  if (index < 0 || index > size)
+	  if (index < 0 || index >= size)
 	  {
 		  throw new IndexOutOfBoundsException("MyLinkedList: Index "+index+" is invalid. List size is "+size);
 	  }

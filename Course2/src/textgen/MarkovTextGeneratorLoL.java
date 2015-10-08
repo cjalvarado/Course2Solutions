@@ -107,6 +107,11 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	public static void main(String[] args)
 	{
 		MarkovTextGeneratorLoL gen = new MarkovTextGeneratorLoL(new Random(42));
+	/*	String initialTest = "hi there hi Leo";
+		gen.train(initialTest);
+		System.out.println(gen);
+		*/
+		
 		String textString = "Hello.  Hello there.  This is a test.  Hello there.  Hello Bob.  Test again.";
 		System.out.println(textString);
 		gen.train(textString);

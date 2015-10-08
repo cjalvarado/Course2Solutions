@@ -20,7 +20,6 @@ public class LaunchClass {
 	}
 	
 	public spelling.WordPath getWordPath() {
-		//System.out.println("New WP");
 		return new spelling.WPTree();
 	}
 	

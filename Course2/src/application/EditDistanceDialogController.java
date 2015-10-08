@@ -24,7 +24,7 @@ public class EditDistanceDialogController {
 	
 	@FXML
 	private void initialize() {
-		okButton.setDefaultButton(true);
+       okButton.setDefaultButton(true);
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class EditDistanceDialogController {
     }
 
     public void setField(String text) {
-    	word1.setText(text);
+        word1.setText(text);
     }
     
     
@@ -45,7 +45,7 @@ public class EditDistanceDialogController {
      */
     @FXML
     private void handleOk() {
-    	if(isInputValid()) {
+        if(isInputValid()) {
     		
     		Task<List<String>> task = new Task<List<String>>() {
     	        @Override
@@ -53,7 +53,7 @@ public class EditDistanceDialogController {
     	        	// get word path
     	        	spelling.WordPath wp = mainApp.getWordPath();
     	    		List<String> path = wp.findPath(word1.getText(), word2.getText());
-    	    		return path;
+                    return path;
     	        }
     		};
     		

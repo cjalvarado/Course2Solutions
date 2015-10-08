@@ -18,7 +18,7 @@ public class MyLinkedListTester {
 
 	private static final int LONG_LIST_LENGTH =10; 
 
-	LinkedList<String> shortList;
+	MyLinkedList<String> shortList;
 	MyLinkedList<Integer> emptyList;
 	MyLinkedList<Integer> longerList;
 	MyLinkedList<Integer> list1;
@@ -29,7 +29,7 @@ public class MyLinkedListTester {
 	@Before
 	public void setUp() throws Exception {
 		// Feel free to use these lists, or add your own
-	    shortList = new LinkedList<String>();
+	    shortList = new MyLinkedList<String>();
 		shortList.add("A");
 		shortList.add("B");
 		emptyList = new MyLinkedList<Integer>();
@@ -116,10 +116,12 @@ public class MyLinkedListTester {
 		list1.add(0,a); // restore it back to where it was
 		// TODO: Add more tests here
 		// remove middle
+		shortList.add("C");
 		String b = shortList.remove(1);
 		assertEquals("Remove: check shortlist contents ", "A", shortList.get(0));
 		assertEquals("Remove: check shortlist contents ", "C", shortList.get(1));	
 		shortList.add(1,b); // restore it back to where it was
+		shortList.remove(2);
 	}
 	
 	/** Test adding an element into the end of the list, specifically
@@ -206,9 +208,10 @@ public class MyLinkedListTester {
 		catch (IndexOutOfBoundsException e) {
 			
 		}
+		
 		try {
-			shortList.set(3,null);
-			fail("Set Null pointer insert");
+			shortList.set(0,null);
+			fail("Set null pointer insert");
 		}
 		catch (NullPointerException e) {
 			

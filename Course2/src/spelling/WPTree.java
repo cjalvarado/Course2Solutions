@@ -34,7 +34,7 @@ public class WPTree implements WordPath {
 	    List<WPTreeNode> queue = new LinkedList<WPTreeNode>();
 		boolean found = false;
 		HashSet<String> visited = new HashSet<String>();
-		NearbyWords nw = new NearbyWords(new DictionaryHashSet("data/dict.txt"));
+		NearbyWords nw = new NearbyWords(new DictionaryHashSet("Course2/data/dict.txt"));
 		
 		// insert first node
 		this.root = new WPTreeNode(word1, null);
@@ -50,7 +50,7 @@ public class WPTree implements WordPath {
 			//System.out.println("****** ITERATION "+count+"*********");
 			//System.out.println(printQueue(queue));
 			WPTreeNode curr = queue.remove(0);
-			List<String> neighbors = nw.distanceOne(curr.getWord());
+			List<String> neighbors = nw.distanceOne(curr.getWord(), true);
 			for(String n : neighbors) {
 				if(!visited.contains(n)) {
 					WPTreeNode child = new WPTreeNode(n, curr);

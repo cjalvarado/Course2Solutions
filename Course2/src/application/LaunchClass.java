@@ -36,7 +36,8 @@ public class LaunchClass {
     }
     
     public spelling.SpellingSuggest getSpellingSuggest(spelling.Dictionary dic) {
-    	return new spelling.SpellingSuggestNW(new spelling.NearbyWords(dic));
+    	//return new spelling.SpellingSuggestNW(new spelling.NearbyWords(dic));
+    	return new spelling.NearbyWords(dic);
     
     }
 }

@@ -66,6 +66,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	  new LLNode<E>(element, curr.prev);
 	  size++;
   }
+  public boolean add(E element) {
+     this.add(this.size(), element);
+     return true;
+  }
   
   public E remove(int index) {
 	  if (index < 0 || index >= size)

@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author Christine
+ * @author UC San Diego MOOC team
  *
  */
 public class MyLinkedListTester {
@@ -28,7 +28,8 @@ public class MyLinkedListTester {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		shortList = new LinkedList<String>();
+		// Feel free to use these lists, or add your own
+	    shortList = new LinkedList<String>();
 		shortList.add("A");
 		shortList.add("B");
 		emptyList = new MyLinkedList<Integer>();
@@ -42,18 +43,13 @@ public class MyLinkedListTester {
 		list1.add(21);
 		list1.add(42);
 		
-		int a = 5;
-		if( a != 5 ) { System.exit(0); };
 	}
 
-	/** Test if heads of the lists are correct */
-	@Test
-	public void testAdd()
-	{
-		
-	}
 	
-	/** Test if the get method is working correctly */
+	/** Test if the get method is working correctly.
+	 */
+	/*You should not need to add much to this method.
+	 * We provide it as an example of a thorough test. */
 	@Test
 	public void testGet()
 	{
@@ -67,7 +63,6 @@ public class MyLinkedListTester {
 		}
 		
 		// test short list, first contents, then out of bounds
-		
 		assertEquals("Check first", "A", shortList.get(0));
 		assertEquals("Check second", "B", shortList.get(1));
 		
@@ -108,43 +103,68 @@ public class MyLinkedListTester {
 	}
 	
 	
-	/** Test if heads of the lists are correct */
+	/** Test removing an element from the list.
+	 * We've included the example from the concept challenge.
+	 * You will want to add more tests.  */
 	@Test
 	public void testRemove()
 	{
 		int a = list1.remove(0);
 		assertEquals("Remove: check a is correct ", 65, a);
 		assertEquals("Remove: check element 0 is correct ", (Integer)21, list1.get(0));
-		assertEquals("Remove: check element 1 is correct ", (Integer)42, list1.get(1));
 		assertEquals("Remove: check size is correct ", 2, list1.size());
+		
+		// TODO: Add more tests here
 	}
 	
-	/** Test if heads of the lists are correct */
+	/** Test adding an element into the end of the list, specifically
+	 *  public boolean add(E element)
+	 * */
+	@Test
+	public void testAddEnd()
+	{
+        // TODO: implement this test
+		
+	}
+
+	
+	/** Test the size of the list */
 	@Test
 	public void testSize()
 	{
-		
+		// TODO: implement this test
 	}
+
 	
-	/** Test if heads of the lists are correct */
+	
+	/** Test adding an element into the list at a specified index,
+	 * specifically:
+	 * public void add(int index, E element)
+	 * */
 	@Test
-	public void testInsert()
+	public void testAddAtIndex()
 	{
+        // TODO: implement this test
 		
 	}
 	
-	/** Test if heads of the lists are correct */
+	/** Test setting an element in the list */
 	@Test
 	public void testSet()
 	{
-		
+	    // TODO: implement this test
+	    
 	}
 	
 	/** Test if heads of the lists are correct */
 	@Test
 	public void testAddAndRemove()
 	{
-		
+	    // TODO: Optionally: implement this test
+	    // Or you might choose to put these tests in the testAdd or 
+	    // testRemove methods.
 	}
+	
+	// TODO: Optionally add more test methods.
 	
 }

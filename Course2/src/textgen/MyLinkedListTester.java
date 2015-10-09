@@ -136,6 +136,22 @@ public class MyLinkedListTester {
 		assertEquals("AddEnd: check shortlist contents ", "B", shortList.get(1));
 		assertEquals("AddEnd: check shortlist contents ", "C", shortList.get(2));
 		shortList.remove(2); // remove C
+		
+		try {
+			shortList.remove(-1);
+			fail("Remove Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) {
+			
+		}
+		try {
+			shortList.remove(2);
+			fail("Remove Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) {
+			
+		}
+		
 	}
 
 	

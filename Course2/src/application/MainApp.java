@@ -23,7 +23,6 @@ import javafx.scene.text.Text;
 
 
 
-
 public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;

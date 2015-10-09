@@ -67,6 +67,9 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	  {
 		  throw new IndexOutOfBoundsException("MyLinkedList add: Index "+index+" is invalid. List size is "+size);
 	  }
+          if(element == null) {
+		  throw new NullPointerException("MyLinkedList: Null elements not permitted in List.");
+	  }
 	  LLNode<E> curr = getNode(index);
 	  new LLNode<E>(element, curr.prev);
 	  size++;
@@ -75,6 +78,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
      this.add(this.size(), element);
      return true;
   }
+  
   
   public E remove(int index) {
 	  if (index < 0 || index >= size)

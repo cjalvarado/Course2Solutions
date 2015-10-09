@@ -20,7 +20,6 @@ public class LaunchClass {
 	}
 	
 	public spelling.WordPath getWordPath() {
-		//System.out.println("New WP");
 		return new spelling.WPTree();
 	}
 	
@@ -37,7 +36,8 @@ public class LaunchClass {
     }
     
     public spelling.SpellingSuggest getSpellingSuggest(spelling.Dictionary dic) {
-    	return new spelling.SpellingSuggestNW(new spelling.NearbyWords(dic));
+    	//return new spelling.SpellingSuggestNW(new spelling.NearbyWords(dic));
+    	return new spelling.NearbyWords(dic);
     
     }
 }

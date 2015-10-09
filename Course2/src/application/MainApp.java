@@ -176,6 +176,7 @@ public class MainApp extends Application {
     }
     
     public void showEDResult(List<String> path) {
+        // intialize alert/dialog to display edit distance result
     	Alert alert = new Alert(AlertType.INFORMATION);
     	alert.setTitle("Result");
     	alert.setHeaderText("Word Path : ");
@@ -214,7 +215,6 @@ public class MainApp extends Application {
 	    	Text text = new Text(pathLabel.getText());
 	    	text.setFont(font);
 	    	if(text.getLayoutBounds().getWidth() > 200) {
-	    		
 		    	alert.getDialogPane().setPrefWidth(text.getLayoutBounds().getWidth()+100);
 	    	}
 	    	

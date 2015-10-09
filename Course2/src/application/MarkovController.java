@@ -90,19 +90,15 @@ public class MarkovController {
      * @param str
      * @return true if string is able to be parsed as an integer.
      */
-    public static boolean isInteger(String str)  
-    {  
-      try  
-      {  
-    	  Integer.parseInt(str);  
-      }  
-      catch(NumberFormatException nfe)  
-      {  
-        return false;  
-      }  
-      return true;  
+    public static boolean isInteger(String str) {  
+        try  {  
+            Integer.parseInt(str);  
+        }  
+        catch(NumberFormatException nfe) {  
+            return false;  
+        } 
+
+        return true;  
     }
 
-    
-   
 }

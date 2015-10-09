@@ -58,17 +58,12 @@ public class LoadFileDialogController {
 		File file = chooser.showOpenDialog(dialogStage);
 		
 		if(file != null) {
-			// TODO -- wait cursor
 			fileString = getStringFromFile(file);
-			// TODO -- normal cursor (scene)
 			pathField.setText(file.getAbsolutePath());
 			
 			// last file to be used as initial directory
 			lastFile = file;
 		}
-		
-		//System.out.println(fileString);
-		
 		
 	}
 	
@@ -132,7 +127,4 @@ public class LoadFileDialogController {
 		dialogStage.close();
 	}
 	
-	/*public void setTextArea(TextArea textBox) {
-		this.textBox = textBox;
-	}*/
 }

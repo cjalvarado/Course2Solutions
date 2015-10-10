@@ -393,7 +393,7 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
     public void setReferences() {
         ac = mainApp.getAutoComplete();
         dic = (spelling.Dictionary)ac;
-        spelling.DictionaryLoader.loadDictionary(dic, "Course2/data/dict.txt");
+        spelling.DictionaryLoader.loadDictionary(dic, "data/dict.txt");
         ss = mainApp.getSpellingSuggest(dic);
     }
 

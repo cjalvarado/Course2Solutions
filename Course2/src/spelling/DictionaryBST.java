@@ -19,7 +19,7 @@ public class DictionaryBST implements Dictionary {
   	* @return true if the word was added to the dictionary 
   	* (it wasn't already there). */
   public boolean addWord(String word) {
-      return theDict.add(word);
+      return theDict.add(word.toLowerCase());
   }
   
   
@@ -31,7 +31,7 @@ public class DictionaryBST implements Dictionary {
 
   /** Is this a word according to this dictionary? */
   public boolean isWord(String s) {
-	  return theDict.contains(s);
+	  return theDict.contains(s.toLowerCase());
   }
 	
 }

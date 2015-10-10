@@ -115,6 +115,21 @@ public class MyLinkedListTester {
 		assertEquals("Remove: check size is correct ", 2, list1.size());
 		list1.add(0,a); // restore it back to where it was
 		// TODO: Add more tests here
+                try {
+                    list1.remove(-1);
+                    fail("Check out of bounds");
+                } 
+                catch (IndexOutOfBoundsException e) {
+
+                }
+
+                try {
+                    list1.remove(3);
+                    fail("Check out of bounds");
+                } 
+                catch (IndexOutOfBoundsException e) {
+
+                }
 		// remove middle
 		shortList.add("C");
 		String b = shortList.remove(1);
@@ -185,6 +200,13 @@ public class MyLinkedListTester {
 		catch (IndexOutOfBoundsException e) {
 			
 		}
+                try {
+                        shortList.add(1, null);
+                        fail("AddAtIndex null insertion");
+                }
+                catch (NullPointerException e) {
+                
+                }
 		
 	}
 	

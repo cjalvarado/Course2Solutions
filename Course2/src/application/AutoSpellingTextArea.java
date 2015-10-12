@@ -55,7 +55,6 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
     private ContextMenu entriesPopup;
 	
 
-    private MainApp mainApp;
     private spelling.AutoComplete ac;
     private spelling.Dictionary dic;
     private spelling.SpellingSuggest ss;
@@ -84,7 +83,7 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 	
     
     
-    public AutoSpellingTextArea() {
+    public AutoSpellingTextArea(spelling.AutoComplete ac, spelling.SpellingSuggest ss, spelling.Dictionary dic) {
         super(true, (textNode, correct)-> {
             // define boolean Text node style
             if(!correct) {
@@ -92,6 +91,14 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
                 textNode.setBackgroundFill(Color.TOMATO);
 			}
 		});
+        
+        
+        // save objects passed in
+        this.ac = ac;
+        this.ss = ss;
+        
+        // dictionary used in spelling suggestions
+        this.dic = dic;
 		
 		
 		
@@ -387,18 +394,6 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 
     public void setAutoComplete(boolean state) {
         autoCompleteOn = state;
-    }
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
-    public void setReferences() {
-        ac = mainApp.getAutoComplete();
-
-        // separate dictionary for spelling suggest
-        dic = mainApp.getDictionary();
-        ss = mainApp.getSpellingSuggest(dic);
     }
 
 

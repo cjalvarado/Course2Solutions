@@ -28,11 +28,6 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	
-	private LaunchClass launch;
-	spelling.WordPath wp;
-	textgen.MarkovTextGenerator mtg;
-	
-	
 	
 	// called at start of application
 	@Override
@@ -58,8 +53,6 @@ public class MainApp extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		launch = new LaunchClass();
 		
 		showTextProApp();
 	}
@@ -283,40 +276,6 @@ public class MainApp extends Application {
         loadStage.show();
     }
     
-    
-    // GETTERS FOR NEW OBJECTS
-    
-    public document.Document getDocument(String text) {
-    	return launch.getDocument(text);
-    }
-    
-    public textgen.MarkovTextGenerator getMTG() {
-    	if(this.mtg != null) {
-    		return this.mtg;
-    	}
-    	return this.mtg = launch.getMTG();
-    }
-    
-    public spelling.WordPath getWordPath() {
-    	if(wp != null) {
-    		return this.wp;
-    	}
-    	else {
-    		return this.wp = launch.getWordPath();
-    	}
-    }
-    
-    public spelling.AutoComplete getAutoComplete() {
-    	return launch.getAutoComplete();
-    }
-    
-    public spelling.Dictionary getDictionary() {
-    	return launch.getDictionary();
-    }
-    
-    public spelling.SpellingSuggest getSpellingSuggest(spelling.Dictionary dic) {
-    	return launch.getSpellingSuggest(dic);
-    }
     
     // MAIN
 	public static void main(String[] args) {

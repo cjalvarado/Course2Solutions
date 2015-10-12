@@ -138,7 +138,7 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
             // could make more efficient
 			if(spellingOn && needUpdate) {
                 this.setStyleSpans(0, checkSpelling());
-			}
+            }
         });
 	
 		

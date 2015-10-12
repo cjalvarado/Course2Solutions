@@ -317,7 +317,10 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
         item.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                // add word to both dictionaries
                 dic.addWord(word);
+                ((spelling.Dictionary)ac).addWord(word);
+
                 setStyle(startIndex, endIndex, true);
             }
         });
@@ -373,13 +376,13 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
     public void setSpelling(boolean state) {
         spellingOn = state;
 
-    if(state = true && getText().length() > 0) {
-        this.setStyleSpans(0, checkSpelling());
-    }
-    // change all text to true/correct style
-    else {
-        setStyle(0, getText().length(), true);
-    }
+        if(state = true && getText().length() > 0) {
+            this.setStyleSpans(0, checkSpelling());
+        }
+        // change all text to true/correct style
+        else {
+            setStyle(0, getText().length(), true);
+        }
     }
 
     public void setAutoComplete(boolean state) {
@@ -392,18 +395,12 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 
     public void setReferences() {
         ac = mainApp.getAutoComplete();
-        dic = (spelling.Dictionary)ac;
-        spelling.DictionaryLoader.loadDictionary(dic, "Course2/data/dict.txt");
+
+        // separate dictionary for spelling suggest
+        dic = mainApp.getDictionary();
         ss = mainApp.getSpellingSuggest(dic);
     }
 
-    public spelling.SpellingSuggest getSpellingSuggest() {
-        return ss;
-    }
-
-    public spelling.Dictionary getDictionary() {
-        return this.dic;
-    }
 
     /**
      * Returns a boolean array with true in position where

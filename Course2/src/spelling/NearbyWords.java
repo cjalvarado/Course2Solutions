@@ -14,7 +14,7 @@ import java.util.List;
  *
  */
 public class NearbyWords implements SpellingSuggest {
-    private static final int THRESHOLD = 1000;
+    private static final int THRESHOLD = 1000; 
 	
 	Dictionary dict;
    

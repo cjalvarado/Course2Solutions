@@ -25,7 +25,7 @@ public class NearbyWords implements SpellingSuggest {
    public List<String> distanceOne(String s, boolean wordsOnly) {
 	   List<String> retList = new ArrayList<String>();
 	   insertions(s, retList, wordsOnly);
-	   changeChar(s, retList, wordsOnly);
+	   substitutions(s, retList, wordsOnly);
 	   deletions(s, retList, wordsOnly);
 	   return retList;
    }
@@ -45,7 +45,7 @@ public class NearbyWords implements SpellingSuggest {
 	   }
    }
    
-   public void changeChar(String s, List<String> currentList, boolean wordsOnly) {
+   public void substitutions(String s, List<String> currentList, boolean wordsOnly) {
 	  // System.out.println("Change Char: Original Word " + s);
 	   for(int index = 0; index < s.length(); index++){
 		   for(int charCode = (int)'a'; charCode <= (int)'z'; charCode++) {

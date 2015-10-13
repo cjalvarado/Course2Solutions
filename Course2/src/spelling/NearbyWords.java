@@ -98,7 +98,7 @@ public class NearbyWords implements SpellingSuggest {
 		
 		// use count for debugging and to stop what could be infinite exploration
 		int count = 0;  
-		while(!queue.isEmpty() && retList.size() < numSuggestions && count < THRESHOLD) {
+		while(!queue.isEmpty() && retList.size() < numSuggestions){ //&& count < THRESHOLD) {
 			/*  // Uncomment below for DEBUGGING SUPPORT, beware - large output
 			  System.out.println("****** ITERATION "+count+"*********");
 		      System.out.println(queue);
@@ -127,12 +127,13 @@ public class NearbyWords implements SpellingSuggest {
    
    public static void main(String[] args) {
 	   String word = "i";
-	   NearbyWords w = new NearbyWords(new DictionaryHashSet("data/dict.txt"));
+	   NearbyWords w = new NearbyWords(new DictionaryHashSet("Course2/data/dict.txt"));
 	   List<String> l = w.distanceOne(word, true);
 	   System.out.println("One away Strings for for \""+word+"\" are:");
 	   System.out.println(l+"\n");
 	   
-	   word = "tailo";
+	   word = "kangaro";
+	   //word = "tailo";
 	   List<String> suggest = w.suggestions(word, 10);
 	   System.out.println("Spelling Suggestions for \""+word+"\" are:");
 	   System.out.println(suggest);

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class LaunchClass {
 	
-	public String dictFile = "Course2/data/dict.txt";
+	public String dictFile = "data/dict.txt";
 	
 	public LaunchClass() {
 		super();
@@ -30,7 +30,7 @@ public class LaunchClass {
     }
     
     public spelling.Dictionary getDictionary() {
-        spelling.Dictionary d = new spelling.DictionaryHashSet(dictFile);
+        spelling.Dictionary d = new spelling.DictionaryHashSet();
         spelling.DictionaryLoader.loadDictionary(d, dictFile);
     	return d;
     }

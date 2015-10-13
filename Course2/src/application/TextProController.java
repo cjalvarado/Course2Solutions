@@ -26,8 +26,11 @@ public class TextProController {
 	private final static double RBOX_THRESHOLD = 520;	 // threshold to change spacing of right VBox
 	
 	
-	
+	// used when showing new stage/scene
 	private MainApp mainApp;
+	
+	// used for getting new objects
+	private LaunchClass launch;
 	
 	// UI Controls
 	private AutoSpellingTextArea textBox;
@@ -74,9 +77,11 @@ public class TextProController {
 		fleschField.setEditable(false);
 		
 		
+		launch = new LaunchClass();
 		
 		// instantiate and add custom text area
-		textBox = new AutoSpellingTextArea();
+		spelling.Dictionary dic = launch.getDictionary();
+		textBox = new AutoSpellingTextArea(launch.getAutoComplete(), launch.getSpellingSuggest(dic), dic);
 		textBox.setPrefSize(570, 492);
 		textBox.setStyle("-fx-font-size: 14px");
 		
@@ -143,8 +148,6 @@ public class TextProController {
      */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
-		textBox.setMainApp(mainApp);
-		textBox.setReferences();
 		
 	}
 	
@@ -156,8 +159,8 @@ public class TextProController {
 		// check if text input
 		if(!text.equals("")) {
 			
-			// how to instantiate??
-			document.Document doc = mainApp.getDocument(text);
+			// create Document representation of  current text
+			document.Document doc = launch.getDocument(text);
 			
 			fIndex = doc.getFleschScore();
 			
@@ -200,7 +203,7 @@ public class TextProController {
 	@FXML
 	private void handleMarkovText() {
 		// get MTG object
-		textgen.MarkovTextGenerator mtg = mainApp.getMTG();
+		textgen.MarkovTextGenerator mtg = launch.getMTG();
 		
 		Task<textgen.MarkovTextGenerator> task = new Task<textgen.MarkovTextGenerator>() {
 	        @Override

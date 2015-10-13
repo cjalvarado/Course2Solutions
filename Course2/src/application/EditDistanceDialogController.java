@@ -51,7 +51,8 @@ public class EditDistanceDialogController {
     	        @Override
     	        public List<String> call() {
     	        	// get word path
-    	        	spelling.WordPath wp = mainApp.getWordPath();
+    	        	LaunchClass launch = new LaunchClass();
+    	        	spelling.WordPath wp = launch.getWordPath();
     	    		List<String> path = wp.findPath(word1.getText(), word2.getText());
                     return path;
     	        }

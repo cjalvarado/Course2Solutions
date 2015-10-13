@@ -14,7 +14,9 @@ import java.util.List;
  *
  */
 public class NearbyWords implements SpellingSuggest {
-   Dictionary dict;
+    private static final int THRESHOLD = 1000; 
+	
+	Dictionary dict;
    
    public NearbyWords (Dictionary dict) {
       this.dict = dict;
@@ -93,8 +95,10 @@ public class NearbyWords implements SpellingSuggest {
 		// pop from the queue, get all String permutations 1 away
 		// if not already visited, add those Strings to the queue
 		// if the String is a word in the dictionary, add it to the return list
-		int count = 0;  // only used for debugging
-		while(!queue.isEmpty() && retList.size() < numSuggestions) {
+		
+		// use count for debugging and to stop what could be infinite exploration
+		int count = 0;  
+		while(!queue.isEmpty() && retList.size() < numSuggestions && count < THRESHOLD) {
 			/*  // Uncomment below for DEBUGGING SUPPORT, beware - large output
 			  System.out.println("****** ITERATION "+count+"*********");
 		      System.out.println(queue);

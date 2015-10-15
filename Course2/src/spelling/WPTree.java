@@ -17,12 +17,14 @@ public class WPTree implements WordPath {
 	// this will do all the work of dynamically creating the tree based on two words
 	// keep a hashset of seen words
 	private WPTreeNode root;
+	private NearbyWords nw; // used to search for nearby Words
 	
 
 	// constructor will build path between the two nodes
 	
 	public WPTree () {
 		this.root = null;
+		this.nw = new NearbyWords(new DictionaryHashSet("Course2/data/dict.txt"));
 	}
 	
 	
@@ -34,7 +36,7 @@ public class WPTree implements WordPath {
 	    List<WPTreeNode> queue = new LinkedList<WPTreeNode>();
 		boolean found = false;
 		HashSet<String> visited = new HashSet<String>();
-		NearbyWords nw = new NearbyWords(new DictionaryHashSet("Course2/data/dict.txt"));
+		
 		
 		// insert first node
 		this.root = new WPTreeNode(word1, null);
@@ -53,7 +55,7 @@ public class WPTree implements WordPath {
 			List<String> neighbors = nw.distanceOne(curr.getWord(), true);
 			for(String n : neighbors) {
 				if(!visited.contains(n)) {
-					WPTreeNode child = new WPTreeNode(n, curr);
+					WPTreeNode child = curr.addChild(n);
 					visited.add(n);
 					queue.add(child);
 					if(n.equals(word2)) {
@@ -85,7 +87,7 @@ public class WPTree implements WordPath {
 		// TODO Auto-generated method stub
 
 		String string1 = "the";
-		String string2 = "kangaroo";
+		String string2 = "fighter";
 		WPTree wp = new WPTree();
 		List<String> path = wp.findPath(string1, string2);
 		if(path == null) {

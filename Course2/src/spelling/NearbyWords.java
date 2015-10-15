@@ -98,7 +98,7 @@ public class NearbyWords implements SpellingSuggest {
 		
 		// use count for debugging and to stop what could be infinite exploration
 		int count = 0;  
-		while(!queue.isEmpty() && retList.size() < numSuggestions){ //&& count < THRESHOLD) {
+		while(!queue.isEmpty() && retList.size() < numSuggestions && count < THRESHOLD) {
 			/*  // Uncomment below for DEBUGGING SUPPORT, beware - large output
 			  System.out.println("****** ITERATION "+count+"*********");
 		      System.out.println(queue);

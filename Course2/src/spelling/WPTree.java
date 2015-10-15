@@ -34,7 +34,7 @@ public class WPTree implements WordPath {
 	    List<WPTreeNode> queue = new LinkedList<WPTreeNode>();
 		boolean found = false;
 		HashSet<String> visited = new HashSet<String>();
-		NearbyWords nw = new NearbyWords(new DictionaryHashSet("data/dict.txt"));
+		NearbyWords nw = new NearbyWords(new DictionaryHashSet("Course2/data/dict.txt"));
 		
 		// insert first node
 		this.root = new WPTreeNode(word1, null);

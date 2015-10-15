@@ -12,7 +12,7 @@ public class NearbyWordsGraderTwo {
         PrintWriter out;
 
         try {
-            out = new PrintWriter("Course2/grader_output.module5.part2.out");
+            out = new PrintWriter("grader_output.module5.part2.out");
         } catch (Exception e) {
             e.printStackTrace();
             return;
@@ -20,7 +20,7 @@ public class NearbyWordsGraderTwo {
 
         try {
             Dictionary d = new DictionaryHashSet();
-            DictionaryLoader.loadDictionary(d, "Course2/test_cases/dict2.txt");
+            DictionaryLoader.loadDictionary(d, "test_cases/dict2.txt");
             NearbyWords nw = new NearbyWords(d);
 
             feedback += "** Test 1: 2 suggestions... ";

@@ -46,7 +46,7 @@ public class MyLinkedListGrader {
                 int tests = 0;
                 String feedback = "";
 		try {
-			out = new PrintWriter("Course2/grader_output/module3.part1.out", "utf-8");
+			out = new PrintWriter("grader_output/module3.part1.out", "utf-8");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;

@@ -16,7 +16,7 @@ public class TrieGrader {
 
         PrintWriter out;
         try {
-            out = new PrintWriter("Course2/grader_output/module4.part2.out");
+            out = new PrintWriter("grader_output/module4.part2.out");
         } catch (Exception e) {
             e.printStackTrace();
             return;
@@ -48,7 +48,7 @@ public class TrieGrader {
 
 
     private void testAddWords(AutoCompleteDictionaryTrie ac) {
-        feedback += "TESTING ADDING WORDS (addWord, insert)  ";
+        feedback += "TESTING ADDING WORDS (addWord)  ";
         feedback += "//*  TEST #1 : Adding first word to dictionary...  *// ";
         feedback += "addWord returned " + ac.addWord("dog") + ".\n";
 
@@ -61,31 +61,27 @@ public class TrieGrader {
         feedback += "//* TEST #3 : Adding list of words to dictionary trie... (testing size after insert)  *// ";
         feedback += "Populating List of words... ";
 
-
-        List<String> words = new ArrayList<String>();
-        words.add("doge");
-        words.add("dogg");
-        words.add("dawg");
-        words.add("dage");
-        words.add("doggo");
-        words.add("doggie");
-        words.add("doggos");
-        words.add("doggoes");
-        words.add("doggies");
-        words.add("test");
-        words.add("tester");
-        words.add("testing");
-        words.add("tested");
-        words.add("testin");
-        words.add("teston");
-        words.add("testone");
-        words.add("testine");
-        words.add("testell");
-        words.add("testcase");
-        words.add("testbase");
-        words.add("testcases");
-
-        ac.insert(words);
+        ac.addWord("doge");
+        ac.addWord("dogg");
+        ac.addWord("dawg");
+        ac.addWord("dage");
+        ac.addWord("doggo");
+        ac.addWord("doggie");
+        ac.addWord("doggos");
+        ac.addWord("doggoes");
+        ac.addWord("doggies");
+        ac.addWord("test");
+        ac.addWord("tester");
+        ac.addWord("testing");
+        ac.addWord("tested");
+        ac.addWord("testin");
+        ac.addWord("teston");
+        ac.addWord("testone");
+        ac.addWord("testine");
+        ac.addWord("testell");
+        ac.addWord("testcase");
+        ac.addWord("testbase");
+        ac.addWord("testcases");
 
         feedback += "Dict size is " + ac.size() + ".\n";
 

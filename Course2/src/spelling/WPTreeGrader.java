@@ -5,7 +5,7 @@ import java.util.List;
 
 // The specific grader used in this test is called "grader_dict.txt", 
 // which is in the data folder. When submitting your WPTree.java file, 
-// make sure it still points to MOOCTextEditor/data/dict.txt.
+// make sure it still points to data/dict.txt.
 
 public class WPTreeGrader {
     public static String printPath(List<String> path) {
@@ -29,7 +29,7 @@ public class WPTreeGrader {
 
         PrintWriter out;
         try {
-            out = new PrintWriter("Course2/grader_output/module5.part3.out");
+            out = new PrintWriter("grader_output/module5.part3.out");
         } catch (Exception e) {
             e.printStackTrace();
             return;

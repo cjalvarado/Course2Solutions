@@ -6,7 +6,7 @@ public class DictionaryGrader {
     public static void main(String args[]) {
         PrintWriter out;
         try {
-            out = new PrintWriter("output.out");
+            out = new PrintWriter("grader_output/module4.part1.out");
         } catch (Exception e) {
             e.printStackTrace();
             return;

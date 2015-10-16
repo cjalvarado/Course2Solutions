@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrieGrader {
-    private static final int LENGTH = 500;
-
+    
     private int incorrect = 0;
     private int tests = 0;
     String feedback = ""; 
@@ -32,7 +31,7 @@ public class TrieGrader {
             g.testPredictions(ac);
 
         } catch (Exception e) {
-            out.println(g.getFeedback() + "Error during runtime: " + e );
+            out.println(g.getFeedback() + "\n\nError during runtime: " + e );
             out.close();
             return;
         }
@@ -48,18 +47,17 @@ public class TrieGrader {
 
 
     private void testAddWords(AutoCompleteDictionaryTrie ac) {
-        feedback += "TESTING ADDING WORDS (addWord)  ";
-        feedback += "//*  TEST #1 : Adding first word to dictionary...  *// ";
+        feedback += "TESTING ADDING WORDS (addWord)  \n";
+        feedback += "//*  TEST #1 : Adding first word to dictionary...  *// \n";
         feedback += "addWord returned " + ac.addWord("dog") + ".\n";
 
-        feedback += "//*  TEST #2 : Adding two more words and testing size...  *// ";
+        feedback += "//*  \nTEST #2 : Adding two more words and testing size...  *// \n";
         ac.addWord("downhill");
         ac.addWord("downhiller");
         
         feedback += "Size is " + ac.size() + ".\n";
 
-        feedback += "//* TEST #3 : Adding list of words to dictionary trie... (testing size after insert)  *// ";
-        feedback += "Populating List of words... ";
+        feedback += "//* \nTEST #3 : Adding more words to dictionary trie... (testing size after insertions)  *// \n";
 
         ac.addWord("doge");
         ac.addWord("dogg");
@@ -88,10 +86,10 @@ public class TrieGrader {
         // get current size before trying to add duplicate word
         int expectedSize = ac.size();
 
-        feedback += "//* TEST #4 : Adding duplicate word...  *// ";
+        feedback += "\n//* TEST #4 : Adding duplicate word...  *// \n";
         feedback += "Adding duplicate word returned " + ac.addWord("dog") + ".\n";
 
-        feedback += "//* TEST #5 : Checking size after try to add duplicate word...  *// ";
+        feedback += "\n//* TEST #5 : Checking size after try to add duplicate word...  *// \n";
         feedback += "Dict size is " + ac.size() + ".\n";
 
     }
@@ -99,55 +97,55 @@ public class TrieGrader {
     private void testWordsInOut(AutoCompleteDictionaryTrie ac) {
         // TEST WORDS IN/OUT OF DICTIONARY
 
-        feedback += "TESTING FOR WORDS IN/OUT OF DICTIONARY (isWord) ";
-        feedback += "//*  TEST #6 : Checking empty string...  *// ";
+        feedback += "\n\nTESTING FOR WORDS IN/OUT OF DICTIONARY (isWord) \n";
+        feedback += "//*  TEST #6 : Checking empty string...  *// \n";
         // test empty string
         feedback += "Empty string in dictionary: " + ac.isWord("") + ".\n";
 
-        feedback += "//*  TEST #7 : Checking for word inserted from list...  *// ";
+        feedback += "\n//*  TEST #7 : Checking for word inserted from list...  *// \n";
         feedback += "'doggoes' in dictionary: " + ac.isWord("doggoes") + ".\n";
 
         // test word only missing last letter
-        feedback += "//*  TEST #8 : Testing word only missing last letter...  *// ";
+        feedback += "\n//*  TEST #8 : Testing word only missing last letter...  *// \n";
         feedback += "'downhil' in dictionary: " + ac.isWord("downhil") + ".\n";
 
         //test word with added letter
-        feedback += "//*  TEST #9 : Testing word with one extra letter...  *// ";
+        feedback += "\n//*  TEST #9 : Testing word with one extra letter...  *// \n";
         feedback += "'downhille' in dictionary: " + ac.isWord("downhille") + ".\n";
 
-        feedback += "//*  TEST #10 : Testing for more words in dictionary...  *// ";
+        feedback += "\n//*  TEST #10 : Testing for more words in dictionary...  *// \n";
         feedback += "'test' in dictionary: " + ac.isWord("test") + ". 'testcases' in dictionary: " + ac.isWord("testcases") + ". 'testone' in dictionary: " + ac.isWord("testone") + ".\n";
 
-        feedback += "//*  TEST #11 : Testing word with capital letters...  *// "; 
+        feedback += "\n//*  TEST #11 : Testing word with capital letters...  *// \n"; 
         feedback += "'TeSt' in dictionary: " + ac.isWord("TeSt") + ".\n";
 
     }
 
     private void testPredictions(AutoCompleteDictionaryTrie ac) {
 
-        feedback += "//*  TEST #12 : TESTING AUTO COMPLETE FUNCTIONALITY (predictCompletions)  *// \n";
+        feedback += "\n\nTESTING AUTO COMPLETE FUNCTIONALITY (predictCompletions)\n";
         List<String> auto = ac.predictCompletions("dog", 3);
         
-        feedback += "//*  TEST #13 : completions requested...  *// ";
-        feedback += "Autocomplete returned the following: ";
+        feedback += "\n//*  TEST #12 : completions requested...  *// \n";
+        feedback += "Autocomplete returned the following: \n";
         for (String s : auto) {
             feedback += s + ", ";
         }
 
-        feedback += "\n//*  TEST #14 : Testing size of list...  *// ";
+        feedback += "\n//*  TEST #13 : Testing size of list...  *// \n";
         feedback += "predictCompletions returned " + auto.size() + " elements.\n";
 
         auto = ac.predictCompletions("soup", 6);
-        feedback += "//*  TEST #14 : 6 completions requested...  *// ";
+        feedback += "\n//*  TEST #14 : 6 completions requested...  *// \n";
         if (auto.size() != 0) {
             feedback += "predictCompletions found " + auto.size() + " words.\n";
         }
 
         auto = ac.predictCompletions("dogg", 10);
-        feedback += "//*  TEST #15 : 10 completions requested...  *// ";
+        feedback += "\n//*  TEST #15 : 10 completions requested...  *// ";
         feedback += "predictCompletions found " + auto.size() + " elements.\n";
         
-        feedback += "//*  TEST #16 : Testing for correctness of last words...  *//";
+        feedback += "\n//*  TEST #16 : Testing for correctness of last words...  *//\n";
         feedback += "Words returned by predictCompletions: ";
         for (String s : auto) {
             feedback += s + ", ";
@@ -155,19 +153,19 @@ public class TrieGrader {
 
         auto = ac.predictCompletions("test", 7);
 
-        feedback += "\n//*  TEST #17 : 7 completions requested... (test for size)  *// ";
+        feedback += "\n\n//*  TEST #17 : 7 completions requested... (test for size)  *// ";
         feedback += "predictCompletions returned " + auto.size() + " elements.\n";
 
-        feedback += "//*  TEST #18 : Testing if list is sorted from shortest to longest...  *// ";
+        feedback += "\n//*  TEST #18 : Testing if list is sorted from shortest to longest...  *// \n";
         feedback += "Check above output.\n";
         
 
         List<String> partialList = auto.subList(0, 5);
         
-        feedback += "//*  TEST #19 : Testing if list contains correct shorter words...  *// ";
+        feedback += "\n//*  TEST #19 : Testing if list contains correct shorter words...  *// \n";
         feedback += "Check above output.\n";
 
-        feedback += "//*  TEST #20 : Testing for remaining words...  *// ";
+        feedback += "\n//*  TEST #20 : Testing for remaining words...  *// \n";
         partialList = auto.subList(5, auto.size());
 
         int count = 0;

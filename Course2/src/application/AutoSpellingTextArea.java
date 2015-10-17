@@ -438,3 +438,4 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 		}
 	}
 }
+

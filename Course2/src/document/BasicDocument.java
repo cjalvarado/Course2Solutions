@@ -81,6 +81,7 @@ public class BasicDocument extends Document
 		testCase(new BasicDocument("many???  Senteeeeeeeeeences are"), 6, 3, 2);
 		testCase(new BasicDocument("Lorem ipsum dolor sit amet, qui ex choro quodsi moderatius, nam dolores explicari forensibus ad."),
 		         32, 15, 1);
+		testCase(new BasicDocument("Segue."), 2, 1, 1);
 				
 	}
 	

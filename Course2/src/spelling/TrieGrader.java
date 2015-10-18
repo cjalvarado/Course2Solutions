@@ -1,29 +1,32 @@
 package spelling;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.lang.StringBuilder;
 import java.util.List;
 
 public class TrieGrader {
-    
-    private int incorrect = 0;
-    private int tests = 0;
-    String feedback = ""; 
-    
+    StringBuilder feedback;
+
+
+    public TrieGrader() {
+        feedback = new StringBuilder();
+    }
+
+
     public static void main(String[] args) {
         TrieGrader g = new TrieGrader();
 
         PrintWriter out;
         try {
-            out = new PrintWriter("grader_output/module4.part2.out");
+            out = new PrintWriter("output.out");
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
-        
+
         try {
             AutoCompleteDictionaryTrie ac = new AutoCompleteDictionaryTrie();
-            
+
             g.testAddWords(ac);
 
             g.testWordsInOut(ac);
@@ -31,33 +34,31 @@ public class TrieGrader {
             g.testPredictions(ac);
 
         } catch (Exception e) {
-            out.println(g.getFeedback() + "\n\nError during runtime: " + e );
+            out.println(g.getFeedback() + "Error during runtime: " + e);
             out.close();
             return;
         }
 
-        String feedback = g.getFeedback();
-        int tests = g.getTests();
-        int incorrect = g.getIncorrect();
-            
-            
-        out.println(feedback);
+        StringBuilder feedback = g.getFeedback();
+
+
+        out.println(feedback.toString());
         out.close();
     }
 
 
     private void testAddWords(AutoCompleteDictionaryTrie ac) {
-        feedback += "TESTING ADDING WORDS (addWord)  \n";
-        feedback += "//*  TEST #1 : Adding first word to dictionary...  *// \n";
-        feedback += "addWord returned " + ac.addWord("dog") + ".\n";
+        feedback.append( "//TESTING ADDING WORDS (addWord, insert)//");
+        appendTestString(1, "Adding first word to dictionary...");
+        feedback.append("addWord returned " + ac.addWord("dog") + ".");
 
-        feedback += "//*  \nTEST #2 : Adding two more words and testing size...  *// \n";
+        appendTestString(2,"Adding two more words and testing size...");
         ac.addWord("downhill");
         ac.addWord("downhiller");
-        
-        feedback += "Size is " + ac.size() + ".\n";
 
-        feedback += "//* \nTEST #3 : Adding more words to dictionary trie... (testing size after insertions)  *// \n";
+        feedback.append("Size is " + ac.size() + ".");
+
+        appendTestString(3, "Adding more words to dictionary trie (testing size after insertions)...");
 
         ac.addWord("doge");
         ac.addWord("dogg");
@@ -81,91 +82,90 @@ public class TrieGrader {
         ac.addWord("testbase");
         ac.addWord("testcases");
 
-        feedback += "Dict size is " + ac.size() + ".\n";
+
+        feedback.append("Dict size is " + ac.size() + ".");
 
         // get current size before trying to add duplicate word
-        int expectedSize = ac.size();
 
-        feedback += "\n//* TEST #4 : Adding duplicate word...  *// \n";
-        feedback += "Adding duplicate word returned " + ac.addWord("dog") + ".\n";
+        appendTestString(4,"Adding duplicate word...");
+        feedback.append("Adding duplicate word returned " + ac.addWord("dog") + ".");
 
-        feedback += "\n//* TEST #5 : Checking size after try to add duplicate word...  *// \n";
-        feedback += "Dict size is " + ac.size() + ".\n";
-
+        appendTestString(5, "Checking size after try to add duplicate word...");
+        feedback.append("Dict size is " + ac.size()+ ".");
     }
 
     private void testWordsInOut(AutoCompleteDictionaryTrie ac) {
-        // TEST WORDS IN/OUT OF DICTIONARY
 
-        feedback += "\n\nTESTING FOR WORDS IN/OUT OF DICTIONARY (isWord) \n";
-        feedback += "//*  TEST #6 : Checking empty string...  *// \n";
+        feedback.append("\n\n\n//TESTING FOR WORDS IN/OUT OF DICTIONARY (isWord)//");
+        appendTestString(6,"Checking empty string...");
         // test empty string
-        feedback += "Empty string in dictionary: " + ac.isWord("") + ".\n";
+        feedback.append("Empty string in dictionary: " + ac.isWord("") + ".");
 
-        feedback += "\n//*  TEST #7 : Checking for word inserted from list...  *// \n";
-        feedback += "'doggoes' in dictionary: " + ac.isWord("doggoes") + ".\n";
+        appendTestString(7, "Checking for word in dictionary...");
+        feedback.append("'doggoes' in dictionary: " + ac.isWord("doggoes") + ".");
 
         // test word only missing last letter
-        feedback += "\n//*  TEST #8 : Testing word only missing last letter...  *// \n";
-        feedback += "'downhil' in dictionary: " + ac.isWord("downhil") + ".\n";
+        appendTestString(8, "Testing word only missing last letter...");
+        feedback.append("'downhil' in dictionary: " + ac.isWord("downhil") + ".");
 
         //test word with added letter
-        feedback += "\n//*  TEST #9 : Testing word with one extra letter...  *// \n";
-        feedback += "'downhille' in dictionary: " + ac.isWord("downhille") + ".\n";
+        appendTestString(9, "Testing word with one extra letter...");
+        feedback.append("'downhille' in dictionary: " + ac.isWord("downhille") + ".");
 
-        feedback += "\n//*  TEST #10 : Testing for more words in dictionary...  *// \n";
-        feedback += "'test' in dictionary: " + ac.isWord("test") + ". 'testcases' in dictionary: " + ac.isWord("testcases") + ". 'testone' in dictionary: " + ac.isWord("testone") + ".\n";
+        appendTestString(10, "Testing for more words in dictionary...");
+        feedback.append("'test' in dictionary: " + ac.isWord("test") + ". 'testcases' in dictionary: " + ac.isWord("testcases") + ". 'testone' in dictionary: " + ac.isWord("testone") + ".");
 
-        feedback += "\n//*  TEST #11 : Testing word with capital letters...  *// \n"; 
-        feedback += "'TeSt' in dictionary: " + ac.isWord("TeSt") + ".\n";
+
+        appendTestString(11, "Testing word with capital letters...");
+        feedback.append("'TeSt' in dictionary: " + ac.isWord("TeSt") + ".");
+
+
 
     }
 
     private void testPredictions(AutoCompleteDictionaryTrie ac) {
 
-        feedback += "\n\nTESTING AUTO COMPLETE FUNCTIONALITY (predictCompletions)\n";
+        feedback.append("\n\n\n//TESTING AUTO COMPLETE FUNCTIONALITY (predictCompletions)//");
         List<String> auto = ac.predictCompletions("dog", 3);
-        
-        feedback += "\n//*  TEST #12 : completions requested...  *// \n";
-        feedback += "Autocomplete returned the following: \n";
+
+        appendTestString(12, "3 completions requested...");
+        feedback.append("Autocomplete returned the following: ");
         for (String s : auto) {
-            feedback += s + ", ";
+            feedback.append(s + ", ");
         }
 
-        feedback += "\n//*  TEST #13 : Testing size of list...  *// \n";
-        feedback += "predictCompletions returned " + auto.size() + " elements.\n";
+        appendTestString(13,"Testing size of list...");
+        feedback.append("predictCompletions returned " + auto.size() + " elements.");
 
         auto = ac.predictCompletions("soup", 6);
-        feedback += "\n//*  TEST #14 : 6 completions requested...  *// \n";
-        if (auto.size() != 0) {
-            feedback += "predictCompletions found " + auto.size() + " words.\n";
-        }
+        appendTestString(14, "6 completions requested, 0 expected...");
+        feedback.append("predictCompletions found " + auto.size() + " words.");
 
         auto = ac.predictCompletions("dogg", 10);
-        feedback += "\n//*  TEST #15 : 10 completions requested...  *// ";
-        feedback += "predictCompletions found " + auto.size() + " elements.\n";
-        
-        feedback += "\n//*  TEST #16 : Testing for correctness of last words...  *//\n";
-        feedback += "Words returned by predictCompletions: ";
+        appendTestString(15, "10 completions requested, 6 expected...");
+        feedback.append("predictCompletions found " + auto.size() + " elements.");
+
+        appendTestString(16, "Testing for correctness of 6 words...");
+        feedback.append("Words returned by predictCompletions: ");
         for (String s : auto) {
-            feedback += s + ", ";
+            feedback.append(s + ", ");
         }
 
         auto = ac.predictCompletions("test", 7);
 
-        feedback += "\n\n//*  TEST #17 : 7 completions requested... (test for size)  *// ";
-        feedback += "predictCompletions returned " + auto.size() + " elements.\n";
+        appendTestString(17, "7 completions requested (test for size)...");
+        feedback.append("predictCompletions returned " + auto.size() + " elements.");
 
-        feedback += "\n//*  TEST #18 : Testing if list is sorted from shortest to longest...  *// \n";
-        feedback += "Check above output.\n";
-        
+        appendTestString(18, "Testing if list is sorted from shortest to longest...");
+        feedback.append("Check above output.");
 
         List<String> partialList = auto.subList(0, 5);
-        
-        feedback += "\n//*  TEST #19 : Testing if list contains correct shorter words...  *// \n";
-        feedback += "Check above output.\n";
 
-        feedback += "\n//*  TEST #20 : Testing for remaining words...  *// \n";
+        appendTestString(19, "Testing if list contains correct shorter words...");
+        feedback.append("Check above output.");
+
+
+        appendTestString(20, "Testing for remaining words...");
         partialList = auto.subList(5, auto.size());
 
         int count = 0;
@@ -175,17 +175,15 @@ public class TrieGrader {
         count = partialList.contains("testell") ? ++count:count;
         count = partialList.contains("testing") ? ++count:count;
 
-        feedback += "Out of 'testone', 'testine', 'testell', and 'testing', " + count + " words were found.\n";
-            
+        feedback.append("Out of 'testone', 'testine', 'testell', and 'testing', " + count + " words were found.");
+
     }
 
-    private int getIncorrect() {
-        return this.incorrect;
+    private void appendTestString(int num, String description) {
+        feedback.append("\n\n** Test #" + num + ": " + description + "\n");
     }
-    private int getTests() {
-        return this.tests;
-    }
-    private String getFeedback() {
+
+    private StringBuilder getFeedback() {
         return this.feedback;
     }
 

@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
  * 
  * @author UC San Diego Intermediate Programming MOOC team
  *
- *XXX This class needs fixing up before moving it to the starter code.
  */
 
 public class DocumentBenchmarking {
@@ -29,23 +28,16 @@ public class DocumentBenchmarking {
 		long startTime2 = 0;
 		long endTime2 = 0;
 		double seconds2 = 0;
-		
+
+		System.out.println("Size\tBasicDocument\tEfficientDocument");
 		for (int numToCheck = start; numToCheck < numSteps*increment + start; 
 				numToCheck += increment)
 		{
 			test = getStringFromFile(s,numToCheck);
 			//System.out.println(test);
 		
-			startTime = System.nanoTime();
-			for(int i = 0;  i< TRIALS; i++) {
-				Document b = new EfficientDocument(test);
-				//Document b = new BasicDocument(test);
-				b.getFleschScore();
-			}
-			endTime = System.nanoTime();
-			seconds = (((double )endTime - startTime) / 1000000000);
-			System.out.print(numToCheck + "\t" + seconds);
-		
+			System.out.print(numToCheck);
+			
 			startTime2 = System.nanoTime();
 			for(int i = 0;  i< TRIALS; i++) {
 				//Document b = new EfficientDocument(test);
@@ -54,7 +46,18 @@ public class DocumentBenchmarking {
 			}
 			endTime2 = System.nanoTime();
 			seconds2 = (((double )endTime2 - startTime2) / 1000000000);
-			System.out.println("\t" + seconds2);
+			System.out.print("\t" + seconds2);
+
+			startTime = System.nanoTime();
+			for(int i = 0;  i< TRIALS; i++) {
+				Document b = new EfficientDocument(test);
+				//Document b = new BasicDocument(test);
+				b.getFleschScore();
+			}
+			endTime = System.nanoTime();
+			seconds = (((double )endTime - startTime) / 1000000000);
+			System.out.println(numToCheck + "\t" + seconds);
+
 		}
 	}
 	

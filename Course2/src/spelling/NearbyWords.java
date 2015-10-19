@@ -25,7 +25,7 @@ public class NearbyWords implements SpellingSuggest {
    public List<String> distanceOne(String s, boolean wordsOnly) {
 	   List<String> retList = new ArrayList<String>();
 	   insertions(s, retList, wordsOnly);
-	   changeChar(s, retList, wordsOnly);
+	   substitutions(s, retList, wordsOnly);
 	   deletions(s, retList, wordsOnly);
 	   return retList;
    }
@@ -45,7 +45,7 @@ public class NearbyWords implements SpellingSuggest {
 	   }
    }
    
-   public void changeChar(String s, List<String> currentList, boolean wordsOnly) {
+   public void substitutions(String s, List<String> currentList, boolean wordsOnly) {
 	  // System.out.println("Change Char: Original Word " + s);
 	   for(int index = 0; index < s.length(); index++){
 		   for(int charCode = (int)'a'; charCode <= (int)'z'; charCode++) {
@@ -127,12 +127,13 @@ public class NearbyWords implements SpellingSuggest {
    
    public static void main(String[] args) {
 	   String word = "i";
-	   NearbyWords w = new NearbyWords(new DictionaryHashSet("data/dict.txt"));
+	   NearbyWords w = new NearbyWords(new DictionaryHashSet("Course2/data/dict.txt"));
 	   List<String> l = w.distanceOne(word, true);
 	   System.out.println("One away Strings for for \""+word+"\" are:");
 	   System.out.println(l+"\n");
 	   
-	   word = "tailo";
+	   word = "kangaro";
+	   //word = "tailo";
 	   List<String> suggest = w.suggestions(word, 10);
 	   System.out.println("Spelling Suggestions for \""+word+"\" are:");
 	   System.out.println(suggest);

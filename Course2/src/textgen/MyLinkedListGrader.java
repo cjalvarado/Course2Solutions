@@ -8,9 +8,10 @@ public class MyLinkedListGrader {
 	
 	PrintWriter out;
 	
-	public void printListForwards(MyLinkedList<Integer> lst)
+	public String printListForwards(MyLinkedList<Integer> lst)
 	{
 		LLNode<Integer> curr;
+                String ret = "";
 		if (lst.head.data == null)
 			curr = lst.head.next;
 		else
@@ -18,30 +19,32 @@ public class MyLinkedListGrader {
 		
 		while (curr != null && curr.data != null)
 		{
-			printNum(curr.data);
+			ret += curr.data;
 			curr = curr.next;
 		}
+                return ret;
 	}
 	
-	public void printListBackwards(MyLinkedList<Integer> lst) {
+	public String printListBackwards(MyLinkedList<Integer> lst) {
 		LLNode<Integer> curr;
+                String ret = "";
 		if (lst.tail.data == null)
 			curr = lst.tail.prev;
 		else
 			curr = lst.tail;
 		while (curr != null && curr.data != null)
 		{
-			printNum(curr.data);
+		        ret += curr.data;
 			curr = curr.prev;
 		}
-	}
-	
-	public void printNum(int num) {
-		out.print("" + num + " ");
+                return ret;
 	}
 	
 	public void doTest()
 	{
+                int incorrect = 0;
+                int tests = 0;
+                String feedback = "";
 		try {
 			out = new PrintWriter("grader_output/module3.part1.out", "utf-8");
 		} catch (Exception e) {
@@ -49,100 +52,52 @@ public class MyLinkedListGrader {
 			return;
 		}
 		MyLinkedList<Integer> lst = new MyLinkedList<Integer>();
-		int nums[] = {5, 4, 3, 2, 1};
+		int nums[] = {1, 2, 3, 4, 5};
 		
+                feedback += "** Test #1: Adding to end of list...";
 		for (int i : nums) {
-			lst.add(0, i);
-		}
-		
+			lst.add(i);
+                }
+                feedback += "Got " + printListForwards(lst) + ". ";
+
+                feedback += "** Test #2: Getting from the middle...";
+                feedback += "Fourth element was " + lst.get(3) + ". ";
+
 		lst.add(2, 6);
 		
-		printListForwards(lst);
-		printListBackwards(lst);
-		printNum(lst.size());
+                feedback += "** Test #3: Adding to the middle...";
+                feedback += "Got " + printListForwards(lst) + ". ";
+
+                feedback += "** Test #4: Testing 'prev' pointers by going through the list backwards...";
+                feedback += "Got " + printListBackwards(lst) + ". ";
+
+                feedback += "** Test #5: Testing list size...";
+                feedback += "Got " + lst.size() + ". ";
 		
 		lst.remove(2);
-		printListForwards(lst);
-		printListBackwards(lst);
-		printNum(lst.size());
-		
+                feedback += "** Test #6: Removing from the middle...";
+                feedback += "Got " + printListForwards(lst) + ". ";
+                
+                feedback += "** Test #7: Testing 'prev' pointers on remove by going through the list backwards...";
+                feedback += "Got " + printListBackwards(lst) + ". ";
+
+                feedback += "** Test #8: Testing size after remove...";
+                feedback += "Got " + lst.size() + ". ";
+
+                feedback += "** Test #9: Testing add, remove, and add on new list...";
 		lst = new MyLinkedList<Integer>();
 		lst.add(0, 1);
 		lst.remove(0);
 		lst.add(0, 1);
-		printListForwards(lst);
-		printNum(lst.size());
-		
-		try
-		{
-			lst.get(-1);
-			printNum(0);
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			printNum(1);
-		}
-		
-		try
-		{
-			lst.get(2);
-			printNum(0);
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			printNum(1);
-		}
-		
-		try
-		{
-			lst.set(-1, 2);
-			printNum(0);
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			printNum(1);
-		}
-		
-		try
-		{
-			lst.set(2, 2);
-			printNum(0);
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			printNum(1);
-		}
-		
-		try
-		{
-			lst.set(0, null);
-			printNum(0);
-		}
-		catch (NullPointerException e)
-		{
-			printNum(1);
-		}
-		
-		try
-		{
-			lst.remove(-1);
-			printNum(0);
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			printNum(1);
-		}
-		
-		try
-		{
-			lst.remove(2);
-			printNum(0);
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			printNum(1);
-		}
-		out.flush();
+                feedback += "Got " + printListForwards(lst) + ". ";
+
+                feedback += "** Test 10: Checking size after previous test...";
+                feedback += "List size is " + lst.size() + ". ";
+
+                feedback += "** Tests 11-20: Testing method bounds...";
+                
+                out.println(feedback + "Tests complete. Check that everything is as expected.");
+                out.close();
 	}
 	
 	public static void main(String args[])

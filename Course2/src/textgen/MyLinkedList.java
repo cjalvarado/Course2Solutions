@@ -1,7 +1,7 @@
+
 package textgen;
 
 import java.util.AbstractList;
-
 
 /** A class that implements a doubly linked list
  * 
@@ -9,12 +9,13 @@ import java.util.AbstractList;
  *
  * @param <E> The type of the elements stored in the list
  */
+
 public class MyLinkedList<E> extends AbstractList<E> {
 	LLNode<E> head;
 	LLNode<E> tail;
 	int size;
 
-	/** Create a new empty LinkedList */
+	//* Create a new empty LinkedList 
 	public MyLinkedList() {
 		head = new LLNode<E>(null);
 		tail = new LLNode<E>(null,head);

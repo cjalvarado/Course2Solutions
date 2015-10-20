@@ -76,11 +76,7 @@ public class LoadFileDialogController {
 			fc.setInitialDirectory(lastFile.getParentFile());
 		}
 		
-		fc.getExtensionFilters().addAll(
-			new FileChooser.ExtensionFilter("All Files", "*.*"),
-			new FileChooser.ExtensionFilter("TXT", "*.txt"),
-			new FileChooser.ExtensionFilter("RTF", "*.rtf")
-		);
+		fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT", "*.txt"));
 	}
 	
 	
